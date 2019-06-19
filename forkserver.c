@@ -58,27 +58,23 @@ int main(void){
 
 			done = 0;
 	
-		
-			do{ 
-				n = recv(s2, &m , sizeof(m), 0);
+			if((pid = fork())<0){
+				printf("fork error");
+				exit(0);
+			}
 			
-
-				if( n<=0) {
-					if(n<0) perror("rev");
-					done = 1;
-				}
-								
-				printf("before fork(%d)\n",getpid());
-
-				if( !done){
+			else if( pid == 0){ // child 
+						
+					do{
+						n = recv(s2, &m , sizeof(m), 0);
+						if( n<=0) {
+							if(n<0) perror("recv");
+							done =1;
+						}	
+				
+						m.type =2;
 					
-					if((pid = fork())<0){
-						printf("fork error");
-						exit(0);
-					}
-					else if( pid == 0){ // child 
-					
-						printf(" child (%d -> %d)\n",getpid(), getppid());
+
 						if(m.operate ==1){
 							m.a[0] = m.a[0]+m.a[1];
 						}	
@@ -91,37 +87,36 @@ int main(void){
 						if(m.operate ==4){
 							m.a[0] =( m.a[0])/( m.a[1]);
 						}
-					
-						m.type=2;
-						if(send(s2,&m,sizeof(m),0)<0){
+
+						if(!done){
+							
+							if(send(s2,&m,sizeof(m),0)<0){
+								perror("send");
+								done=1;
+							}
+						}
+					}while(!done);
+			}
+			else {
+					sleep(2);
+
+					n = recv(s2, &m , sizeof(m), 0);
+					if( n<=0) {
+						if(n<0) perror("recv");
+						done =1;
+					}	
+				
+					m.type =2;
+					if(send(s2,&m,sizeof(m),0)<0){
 							perror("send");
 							done=1;
-						}
-					}
-					else{ //parent
-						sleep(2); // 자식먼저 실행
-						
-						printf("parent! %d \n", getpid());
-							
-						n = recv(s2, &m , sizeof(m), 0);
-						if( n<=0) {
-							if(n<0) perror("recv");
-							done =1;
-						}	
-				
-						m.type =2;
-					
-						if(send(s2,&m,sizeof(m),0)<0){
-							perror("send");
-							done = 0;
-						}
 					}
 					
-				}
-			}while(!done);
+			}
 			
 			close(s2);
-		}
+					
 			return 0;
+		}
 }
 
