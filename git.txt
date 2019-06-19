@@ -2,18 +2,24 @@ git clone 다른사람이 작업한 작업 복사 나중에 해보기 pull 효�
 
 git 치면 쓸수있는 키 나옴
 
+
+
 git init ~ 디렉토리만들기 혹은 
 먼저 만들어진파일에 git init 해줘서 git사용할수있는 디렉토리로 전환
+
 순서
 git add hello.c // git add --all 와일드카드 모든디렉토리와 파일 내부내용이 전부 add
+
 git commit -m "커밋에대한 코멘트"
 
-git remote add origin 저장소 주소 ->원격저장소 입력 https://github.com/leedonyoeb/dons.git
-+ finaltest.git < 여기가 기말 집어넣을곳
+git remote add origin 저장소 주소
+->원격저장소 입력 https://github.com/leedonyoeb/dons.git 
+//  finaltest.git < 여기가 기말 집어넣을곳   // dons2.git  파일들어있는곳 
 
-
-git push -u origin master -> 등록한 유저네임의 이름+비밀번호  leedonyoeb+king251300
+git push -u origin master 
+-> 등록한 유저네임의 이름+비밀번호  leedonyoeb+king251300
 하면 업로드 됨
+
 git remote set-url origin ->저장소주소 변경
 git remote -v ->현재 저장소 확인
 
