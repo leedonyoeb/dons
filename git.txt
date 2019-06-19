@@ -1,0 +1,47 @@
+git clone 다른사람이 작업한 작업 복사 나중에 해보기 pull 효과
+
+git 치면 쓸수있는 키 나옴
+
+git init ~ 디렉토리만들기 혹은 
+먼저 만들어진파일에 git init 해줘서 git사용할수있는 디렉토리로 전환
+순서
+git add hello.c // git add --all 와일드카드 모든디렉토리와 파일 내부내용이 전부 add
+git commit -m "커밋에대한 코멘트"
+
+git remote add origin 저장소 주소 ->원격저장소 입력 https://github.com/leedonyoeb/dons.git
++ finaltest.git < 여기가 기말 집어넣을곳
+
+
+git push -u origin master -> 등록한 유저네임의 이름+비밀번호  leedonyoeb+king251300
+하면 업로드 됨
+git remote set-url origin ->저장소주소 변경
+git remote -v ->현재 저장소 확인
+
+git branch 브런치 리스트
+git checkout -b 브랜치이름 ->브런치생성
+git checkout 브런치이름 -> 브런치이동
+
+브런치2로 이동해서 수정후 에드,커밋
+다시 마스터브런치로와서 머지(병합) 하면 수정된거 통합됨
+git merge 브런치2 -> 브런치2와 병합
+충돌되면 conflict 뜸 -> git status통해 파일이 두가지에서 모두 변경되었음을 확인 
+
+rm -rf ~~ 디렉터리강제삭제
+
+git pull origin master -> 푸쉬된 파일 다시 가져오기
+ 
+아래 명령으로 "feature_x"라는 이름의 가지를 만들고 갈아탑니다.
+git checkout -b feature_x
+
+아래 명령으로 master 가지로 돌아올 수 있어요.
+git checkout master
+
+아래 명령으로는 가지를 삭제할 수 있어요.
+git branch -d feature_x
+
+
+
+
+
+
+
